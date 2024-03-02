@@ -31,6 +31,7 @@
     </section>
   </section>
 </template>
+
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import gif from '@/assets/15.gif';
@@ -45,10 +46,11 @@ const socialList = reactive([
   { avatar, tip: '抖音持续更新中！', icon: 'dy', account: '@诺诺在神游', link: 'https://www.douyin.com/user/MS4wLjABAAAAcyVAX130BAl1ur1-e8h0oPiiwtHttt4hjQdxir-RyfI' },
   { avatar, tip: '小红书穿搭分享中~', icon: 'xhs', account: '@诺诺在神游', link: 'https://www.xiaohongshu.com/user/profile/5b071208e8ac2b65dafd9662' },
   { avatar, tip: '微博绝赞运营中！', icon: 'wb', account: '@诺诺在神游', link: 'https://weibo.com/u/3519058857' },
-  { avatar, tip: '粉丝群GET最新动态！', icon: 'qg', account: '784905311', link: '' },
+  { avatar, tip: '粉丝群GET最新动态！', icon: 'qg', account: '784905311', link: 'http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=UQV8m5BnDqy61JP8vZ6bMIjQeax0H-6d&authKey=T6SsXAgLQyUf%2BfCohoYXv7fRa7FGPUIQ7WNc%2Ftfm4UBZi89Xan%2FGMlPAEHzA6lBm&noverify=0&group_code=784905311' },
 ]);
 
 </script>
+
 <style scoped>
 .avatar {
   border: 3px dashed #0000009d;
