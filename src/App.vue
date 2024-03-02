@@ -1,5 +1,6 @@
 <script setup lang="ts">
-import { RouterView } from 'vue-router';
+import index from './pages/index.vue';
+
 const fit = () => {
   const rect = document.body.getBoundingClientRect();
   const rate = window.screen.width / 750;
@@ -17,7 +18,7 @@ fit();
 </script>
 
 <template>
-  <RouterView />
+  <index />
 </template>
 
 <style>
