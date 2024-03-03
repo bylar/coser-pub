@@ -14,6 +14,7 @@
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
   },
   "dependencies": {
+    "clipboard": "^2.0.11",
     "nes.css": "^2.3.0",
     "vue": "^3.4.15"
   },

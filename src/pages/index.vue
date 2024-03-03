@@ -3,7 +3,9 @@
   <progress v-show="loading < 100" class="nes-progress is-pattern loading" :value="loading" max="100"></progress>
   <section v-show="loading === 100" class="nes-container box slide-in-elliptic-top-fwd"
     style="border-style: dashed; animation-delay: 0.2s;">
-    <img :src="gif" style="position: absolute; right: 10px; bottom: 10px;">
+    <img v-show="!egg" :src="gif" @click="egg = !egg" style="position: absolute; right: 10px; bottom: 10px;" />
+    <img v-show="egg" :src="bg" @click="egg = !egg" class="girl vibrate-1"
+      style="position: absolute; right: 10px; bottom: 10px;" />
     <section class="message-list">
       <section class="message -left slide-in-right" :style="`animation-delay: ${0.7 + 0.04}s;`">
         <img class="nes-avatar is-large avatar" referrerpolicy="no-referrer"
@@ -26,49 +28,38 @@
           </a>
         </p>
       </section>
-
     </section>
     <section v-show="message" class="nes-dialog is-rounded swing-in-top-bck" id="dialog-rounded">
       <form method="dialog">
         <p class="title">💕💕💕</p>
         <p>{{ message }}</p>
+        <input type="text" id="name_field" :value="qgNumber" class="nes-input" style="font-weight: bolder;">
         <menu class="dialog-menu">
-          <button class="nes-btn is-primary" @click="message = ''">好的喵</button>
+          <button class="nes-btn is-primary copyBtn" :data-clipboard-text="qgNumber">{{ primary }}</button>
+          <button class="nes-btn" @click="message = ''">好了喵</button>
         </menu>
       </form>
     </section>
   </section>
+
 </template>
 
 <script lang="ts" setup>
 import { reactive, ref } from 'vue';
 import gif from '@/assets/15.gif';
+import bg from '@/assets/girl-without-bg-v1.png';
+import Clipboard from 'clipboard'
 const loading = ref(0);
 const message = ref('');
+const primary = ref('');
+const egg = ref(false);
+const qgNumber = 784905311;
 const interval = setInterval(() => {
   loading.value += 5;
   if (loading.value >= 100) clearInterval(interval);
 }, 50);
+new Clipboard('.copyBtn').on('success', () => primary.value = '复制成功喵');
 const avatar = 'https://i0.hdslb.com/bfs/face/240248132aab51c85a58108a8878641d8df49163.jpg';
-const _copyText = async (value: string) => {
-  if (navigator.clipboard) {
-    await navigator.clipboard.writeText(value);
-    return true;
-  } else if (document.execCommand) {
-    const input = document.createElement("input");
-    input.readOnly = true;
-    input.value = value;
-    document.body.appendChild(input);
-    input.select();
-    input.setSelectionRange(0, input.value.length);
-    document.execCommand('Copy');
-    document.body.removeChild(input);
-    return true;
-  } else {
-    return false;
-  }
-};
-
 const socialList = reactive([
   {
     avatar, tip: '关注我的哔哩哔哩=w=', icon: 'bz', account: '@诺诺在神游', action: () => {
@@ -92,11 +83,12 @@ const socialList = reactive([
     }
   },
   {
-    avatar, tip: '粉丝群GET最新动态！', icon: 'qg', account: '784905311', action: async () => {
+    avatar, tip: '粉丝群GET最新动态！', icon: 'qg', account: qgNumber, action: async () => {
       const is_weixin = (function () { return navigator.userAgent.toLowerCase().indexOf('micromessenger') !== -1 })();
-      if (is_weixin) { // In Wechat
-        await _copyText('784905311') && (message.value = '群号已复制到剪切板喵~')
-      } else {
+      message.value = '请复制群号喵~';
+      primary.value = '复制喵';
+      navigator.clipboard.writeText(`${qgNumber}`);
+      if (!is_weixin) { // In Wechat
         window.open('http://qm.qq.com/cgi-bin/qm/qr?_wv=1027&k=UQV8m5BnDqy61JP8vZ6bMIjQeax0H-6d&authKey=T6SsXAgLQyUf%2BfCohoYXv7fRa7FGPUIQ7WNc%2Ftfm4UBZi89Xan%2FGMlPAEHzA6lBm&noverify=0&group_code=784905311', '_blank');
       }
     }
@@ -106,6 +98,35 @@ const socialList = reactive([
 </script>
 
 <style scoped>
+.girl {
+  flex: 1 1 0%;
+  object-fit: contain;
+  width: 200px;
+}
+
+#dialog-rounded {
+  display: block;
+  position: fixed;
+  left: 50%;
+  width: 300px;
+  margin-left: -150px;
+  background-color: #fff;
+  top: 20vh;
+  box-shadow: 0 0 30px #000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+menu.dialog-menu {
+  display: flex;
+  width: 200px;
+  justify-content: space-between;
+  margin-block: 0;
+  margin-top: 20px;
+  padding: 0;
+}
+
 .avatar {
   border: 3px dashed #0000009d;
   border-radius: 50%;
