@@ -41,6 +41,10 @@
       </form>
     </section>
   </section>
+  <section v-show="loading === 100" class="EMAIL" @click="sendEmail">
+    <i class="iconfont icf-email"></i>
+    合作邮箱 nuo@coser.pub
+  </section>
 
 </template>
 
@@ -58,6 +62,9 @@ const interval = setInterval(() => {
   loading.value += 5;
   if (loading.value >= 100) clearInterval(interval);
 }, 50);
+const sendEmail = () => {
+  window.open('mailto:nuo@coser.pub');
+}
 new Clipboard('.copyBtn').on('success', () => primary.value = '复制成功喵');
 const avatar = 'https://i0.hdslb.com/bfs/face/240248132aab51c85a58108a8878641d8df49163.jpg';
 const socialList = reactive([
@@ -98,6 +105,18 @@ const socialList = reactive([
 </script>
 
 <style scoped>
+.EMAIL {
+  display: flex;
+  align-items: center;
+  font-weight: bolder;
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+.EMAIL i {
+  font-size: 42px;
+}
+
 .girl {
   flex: 1 1 0%;
   object-fit: contain;
