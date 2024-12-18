@@ -11,7 +11,7 @@
         <img class="nes-avatar is-large avatar" referrerpolicy="no-referrer"
           src="https://i0.hdslb.com/bfs/face/240248132aab51c85a58108a8878641d8df49163.jpg">
         <div class="nes-balloon from-left slide-in-right item">
-          <b>你好，我是诺诺！</b>
+          <b>你好，我是诺成功！</b>
         </div>
       </section>
       <section v-for="(i, k) in socialList" class="message -right slide-in-right"
@@ -69,23 +69,23 @@ new Clipboard('.copyBtn').on('success', () => primary.value = '复制成功喵')
 const avatar = 'https://i0.hdslb.com/bfs/face/240248132aab51c85a58108a8878641d8df49163.jpg';
 const socialList = reactive([
   {
-    avatar, tip: '关注我的哔哩哔哩=w=', icon: 'bz', account: '@诺诺在神游', action: () => {
+    avatar, tip: '关注我的哔哩哔哩=w=', icon: 'bz', account: '@诺成功', action: () => {
       window.open('https://space.bilibili.com/582306', '_blank');
     }
   },
   {
-    avatar, tip: '抖音持续更新中！', icon: 'dy', account: '@诺诺在神游', action: () => {
+    avatar, tip: '抖音持续更新中！', icon: 'dy', account: '@诺成功', action: () => {
       window.open('https://www.douyin.com/user/MS4wLjABAAAAcyVAX130BAl1ur1-e8h0oPiiwtHttt4hjQdxir-RyfI', '_blank');
 
     }
   },
   {
-    avatar, tip: '小红书穿搭分享中~', icon: 'xhs', account: '@诺诺在神游', action: () => {
+    avatar, tip: '小红书穿搭分享中~', icon: 'xhs', account: '@诺成功', action: () => {
       window.open('https://www.xiaohongshu.com/user/profile/5b071208e8ac2b65dafd9662', '_blank');
     }
   },
   {
-    avatar, tip: '#微博绝赞运营中#', icon: 'wb', account: '@诺诺在神游', action: () => {
+    avatar, tip: '#微博绝赞运营中#', icon: 'wb', account: '@诺成功', action: () => {
       window.open('https://weibo.com/u/3519058857', '_blank');
     }
   },
